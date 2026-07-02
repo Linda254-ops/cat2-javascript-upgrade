@@ -21,3 +21,35 @@ services.forEach(service => {
     card.appendChild(desc);
     serviceContainer.appendChild(card);
 });
+
+// Feature 2: Dynamically add & remove elements
+const addServiceBtn = document.getElementById("add-service-btn");
+const newServiceInput = document.getElementById("new-service-input");
+
+addServiceBtn.addEventListener("click", () => {
+    const value = newServiceInput.value.trim();
+    if (value === "") return;
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const title = document.createElement("h3");
+    title.textContent = value;
+
+    const desc = document.createElement("p");
+    desc.textContent = "Suggested catering service.";
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.classList.add("remove-btn");
+    removeBtn.addEventListener("click", () => {
+        card.remove();
+    });
+
+    card.appendChild(title);
+    card.appendChild(desc);
+    card.appendChild(removeBtn);
+    serviceContainer.appendChild(card);
+
+    newServiceInput.value = "";
+});
