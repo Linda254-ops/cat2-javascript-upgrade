@@ -53,3 +53,25 @@ addServiceBtn.addEventListener("click", () => {
 
     newServiceInput.value = "";
 });
+
+// Feature 3: Form handling with validation feedback
+const bookingForm = document.getElementById("booking-form");
+const bookingFeedback = document.getElementById("booking-feedback");
+
+bookingForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("booking-name").value.trim();
+    const email = document.getElementById("booking-email").value.trim();
+    const message = document.getElementById("booking-message").value.trim();
+
+    if (name === "" || !email.includes("@") || message === "") {
+        bookingFeedback.textContent = "Please fill in your name, a valid email, and event details.";
+        bookingFeedback.style.color = "red";
+        return;
+    }
+
+    bookingFeedback.textContent = `Thanks, ${name}! Chef Shown will contact you at ${email} soon.`;
+    bookingFeedback.style.color = "green";
+    bookingForm.reset();
+});
